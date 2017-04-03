@@ -8,16 +8,16 @@
 using namespace std;
 
 // Custom comparator function for sorting vector of pairs by second value (ascending order)
-bool sort_second(const pair<char,int> &a, const pair<char,int> &b)
+bool sort_second(const pair<char,unsigned long long> &a, const pair<char,unsigned long long> &b)
 {
   return (a.second < b.second);
 }
 
 // Returns a vector of pairs with the character first and frequency second 
-vector< pair<char,int> > get_freq(string file_name)
+vector< pair<char,unsigned long long> > get_freq(string file_name)
 {
-  map<char,int> freq_map;
-  vector< pair<char,int> > freq_vector;
+  map<char,unsigned long long> freq_map;
+  vector< pair<char,unsigned long long> > freq_vector;
 
   // Open file whose name was passed in to get_freq
   ifstream file;
@@ -32,7 +32,7 @@ vector< pair<char,int> > get_freq(string file_name)
     {
       file.get(my_char);
       cout << my_char;
-      freq_map.insert(pair<char,int>(my_char, freq_map[my_char]++));
+      freq_map.insert(pair<char,unsigned long long>(my_char, freq_map[my_char]++));
     }
 
     file.close();
@@ -43,7 +43,7 @@ vector< pair<char,int> > get_freq(string file_name)
   }
 
   // Fill vector with map values
-  for (map<char,int>::iterator mi = freq_map.begin(); mi != freq_map.end(); ++mi)
+  for (map<char,unsigned long long>::iterator mi = freq_map.begin(); mi != freq_map.end(); ++mi)
   {
     freq_vector.push_back(make_pair(mi->first, mi->second));
   }
@@ -61,10 +61,16 @@ vector< pair<char,int> > get_freq(string file_name)
   return freq_vector;
 }
 
+struct min_heap_node
+{
+  char data;
+
+};
+
 int main()
 {
   string file_name = "words.txt";
-  vector< pair<char,int> > freq_vector = get_freq(file_name);
+  vector< pair<char,unsigned long long> > freq_vector = get_freq(file_name);
 
   return 0;
 }
