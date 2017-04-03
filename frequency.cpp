@@ -6,13 +6,17 @@ using namespace std;
 
 int main()
 {
-  string line;
-  ifstream file("words.txt");
+  ifstream file;
+  file.open("words.txt", ios::in);
+
   if (file.is_open())
   {
-    while (getline(file, line))
+    char my_char;
+  
+    while (!file.eof())
     {
-      cout << line << '\n';
+      file.get(my_char);
+      cout << my_char;
     }
 
     file.close();
