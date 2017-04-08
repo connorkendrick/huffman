@@ -17,33 +17,16 @@ bool sort_second(const pair<char,unsigned long long> &a, const pair<char,unsigne
 }
 
 // Returns a vector of pairs with the character first and frequency second 
-vector< pair<char,unsigned long long> > get_freq(string file_name)
+vector< pair<char,unsigned long long> > get_freq(vector<char> char_vector)
 {
   map<char,unsigned long long> freq_map;
   vector< pair<char,unsigned long long> > freq_vector;
 
-  // Open file whose name was passed in to get_freq
-  ifstream file;
-  file.open(file_name.c_str(), ios::in);
-
   // Fill map with characters, updating frequencies when a match is found
-  if (file.is_open())
+  for (size_t n = 0; n < char_vector.size(); ++n)
   {
-    char my_char;
-  
-    while (!file.eof())
-    {
-      file.get(my_char);
-      cout << my_char;
-      freq_map.insert(pair<char,unsigned long long>(my_char, freq_map[my_char]++));
-    }
-
-    file.close();
-  }
-  else
-  {
-    cout << "Unable to open file";
-    exit(EXIT_FAILURE);
+    cout << char_vector[n];
+    freq_map.insert(pair<char,unsigned long long>(char_vector[n], ++freq_map[char_vector[n]]));
   }
 
   // Fill vector with map values
