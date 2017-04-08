@@ -42,3 +42,8 @@ void compress(vector<char> char_vector, map<char, string> hcode_table)
   
   output.close();
 }
+
+// I ran this on a very large text file and it took way too long to compress
+// I need to find a more efficient way to compress
+// Maybe not putting everything into a string in the beginning? I don't think that would help though,
+// because it was still writing to the bin file, but it was taking a very long time.
