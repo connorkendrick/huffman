@@ -6,12 +6,7 @@
 #include <vector>
 
 #include "modules/min_heap_node.h"
-#include "modules/get_freq.h"
-#include "modules/create_hcode.h"
-#include "modules/print_hcode.h"
-#include "modules/map_hcode.h"
-#include "modules/get_chars.h"
-#include "modules/compress.h"
+#include "modules/hcode.h"
 
 using namespace std;
 
