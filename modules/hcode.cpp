@@ -29,7 +29,6 @@ vector<char> get_chars(const string& file_name)
     while (!file.eof())
     {
       file.get(my_char);
-      cout << my_char; // test
       file_chars.push_back(my_char);
     }
 
@@ -59,7 +58,6 @@ vector< pair<char,unsigned long long> > get_freq(const vector<char>& char_vector
   // Fill map with characters, updating frequencies when a match is found
   for (size_t n = 0; n < char_vector.size(); ++n)
   {
-    cout << char_vector[n];
     freq_map.insert(pair<char,unsigned long long>(char_vector[n], ++freq_map[char_vector[n]]));
   }
 
@@ -71,9 +69,9 @@ vector< pair<char,unsigned long long> > get_freq(const vector<char>& char_vector
 
   // Sort vector
   sort(freq_vector.begin(), freq_vector.end(), sort_second);
-
+  
+  // Print frequencies
   cout << endl << endl;
-
   for (size_t i = 0; i < freq_vector.size(); ++i)
   {
     cout << freq_vector[i].first << ",\t" << freq_vector[i].second << endl;
@@ -82,9 +80,10 @@ vector< pair<char,unsigned long long> > get_freq(const vector<char>& char_vector
   return freq_vector;
 }
 
+// Custom comparator function for priority queue
 struct min_heap_compare
 {
-  bool operator()( min_heap_node* const& left,  min_heap_node* const& right)
+  bool operator()(min_heap_node* const& left, min_heap_node* const& right)
   {
     return (left->freq > right->freq);
   }
@@ -128,6 +127,7 @@ min_heap_node* create_hcode(const vector< pair<char,unsigned long long> >& freq_
   return min_heap.top();
 }
 
+// Assigns bit pattern to each character using the Huffman tree
 void map_hcode(map<char,string>& hcode_table, min_heap_node* const& root, const string& str)
 {
   if (!root)
@@ -144,7 +144,8 @@ void map_hcode(map<char,string>& hcode_table, min_heap_node* const& root, const 
   map_hcode(hcode_table, root->right, str + "1");
 }
 
-void print_hcode( min_heap_node* const& root, const string& str)
+// Prints a representation of the huffman code table
+void print_hcode(min_heap_node* const& root, const string& str)
 {
   if (!root)
   {
@@ -160,22 +161,19 @@ void print_hcode( min_heap_node* const& root, const string& str)
   print_hcode(root->right, str + "1");
 }
 
+// Compresses the original text file using the huffman code table
 void compress(const vector<char>& char_vector, const map<char, string>& hcode_table)
 {
   ofstream output("compressed.bin", ios::binary);
   string buffer = "";
   bitset<8> bset;
   unsigned long n;
-  
-  // could skip the buffer entirely
-  
+    
   for (size_t i = 0; i < char_vector.size(); ++i)
   {
     buffer += hcode_table.at(char_vector[i]);
   }
-  
-  // just check if the vector length is < 8 and add to it instead
-  
+    
   if (buffer.length() < 8)
   {
     buffer += string(8 - buffer.length(), '0');
@@ -185,26 +183,17 @@ void compress(const vector<char>& char_vector, const map<char, string>& hcode_ta
     buffer += string(8 - (buffer.length() % 8), '0');
   }
   
-  // instead of removing items from the container holding it,
-  // I could just iterate along it using an int variable to count
-  
-  while (buffer.length() != 0)
+  size_t current = 0;
+  for (size_t count = 0; count * 8 < buffer.length(); ++count)
   {
-    bset = bitset<8>(buffer.substr(0, 8));
+    bset = bitset<8>(buffer.substr(current, current + 8));
     n = bset.to_ulong();
     unsigned char c = static_cast<unsigned char>(n);
+        
+    output.write(reinterpret_cast<char*>(&c), sizeof(c));
 
-    output.write(reinterpret_cast<char*>(&c), sizeof(c)); // STORE CHARACTER IN A BUFFER AND DON'T WRITE TO THE FILE EVERY TIME!!!!!
-    
-    buffer.erase(0, 8);
+    current += 8;
   }
   
   output.close();
 }
-// I ran this on a very large text file and it took way too long to compress
-// I need to find a more efficient way to compress
-// Maybe not putting everything into a string in the beginning? I don't think that would help though,
-// because it was still writing to the bin file, but it was taking a very long time.
-
-
-
