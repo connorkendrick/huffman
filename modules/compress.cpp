@@ -15,10 +15,14 @@ void compress(vector<char> char_vector, map<char, string> hcode_table)
   bitset<8> bset;
   unsigned long n;
   
+  // could skip the buffer entirely
+  
   for (size_t i = 0; i < char_vector.size(); ++i)
   {
     buffer += hcode_table[char_vector[i]];
   }
+  
+  // just check if the vector length is < 8 and add to it instead
   
   if (buffer.length() < 8)
   {
@@ -29,13 +33,16 @@ void compress(vector<char> char_vector, map<char, string> hcode_table)
     buffer += string(8 - (buffer.length() % 8), '0');
   }
   
+  // instead of removing items from the container holding it,
+  // I could just iterate along it using an int variable to count
+  
   while (buffer.length() != 0)
   {
     bset = bitset<8>(buffer.substr(0, 8));
     n = bset.to_ulong();
     unsigned char c = static_cast<unsigned char>(n);
 
-    output.write(reinterpret_cast<char*>(&c), sizeof(c));
+    output.write(reinterpret_cast<char*>(&c), sizeof(c)); // STORE CHARACTER IN A BUFFER AND DON'T WRITE TO THE FILE EVERY TIME!!!!!
     
     buffer.erase(0, 8);
   }

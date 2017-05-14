@@ -8,7 +8,8 @@
 
 using namespace std;
 
-vector<char> get_chars(string file_name)
+// Returns a vector of characters so that the file only needs to be opened once
+vector<char> get_chars(const string& file_name)
 {
   vector<char> file_chars;
 
@@ -22,7 +23,7 @@ vector<char> get_chars(string file_name)
     while (!file.eof())
     {
       file.get(my_char);
-      cout << my_char;
+      cout << my_char; // test
       file_chars.push_back(my_char);
     }
 

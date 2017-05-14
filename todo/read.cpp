@@ -6,7 +6,7 @@ using namespace std;
 
 main()
 {
-  ifstream f("binary.bin", ios::binary | ios::in);
+  ifstream f("compressed.bin", ios::binary | ios::in);
   char c;
   while (f.get(c))
   {

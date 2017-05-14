@@ -11,13 +11,13 @@
 using namespace std;
 
 // Custom comparator function for sorting vector of pairs by second value (ascending order)
-bool sort_second(const pair<char,unsigned long long> &a, const pair<char,unsigned long long> &b)
+bool sort_second(const pair<char,unsigned long long>& a, const pair<char,unsigned long long>& b)
 {
   return (a.second < b.second);
 }
 
 // Returns a vector of pairs with the character first and frequency second 
-vector< pair<char,unsigned long long> > get_freq(vector<char> char_vector)
+vector< pair<char,unsigned long long> > get_freq(const vector<char>& char_vector)
 {
   map<char,unsigned long long> freq_map;
   vector< pair<char,unsigned long long> > freq_vector;
