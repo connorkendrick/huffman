@@ -1,12 +1,12 @@
+#include "modules/min_heap_node.h"
+#include "modules/hcode.h"
+
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <map>
 #include <vector>
-
-#include "modules/min_heap_node.h"
-#include "modules/hcode.h"
 
 using namespace std;
 

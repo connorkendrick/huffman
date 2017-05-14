@@ -84,13 +84,13 @@ vector< pair<char,unsigned long long> > get_freq(const vector<char>& char_vector
 
 struct min_heap_compare
 {
-  bool operator()(min_heap_node* left, min_heap_node* right)
+  bool operator()( min_heap_node* const& left,  min_heap_node* const& right)
   {
     return (left->freq > right->freq);
   }
 };
 
-min_heap_node* create_hcode(vector< pair<char,unsigned long long> > freq_vector)
+min_heap_node* create_hcode(const vector< pair<char,unsigned long long> >& freq_vector)
 {
   min_heap_node *left;
   min_heap_node *right;
@@ -128,7 +128,7 @@ min_heap_node* create_hcode(vector< pair<char,unsigned long long> > freq_vector)
   return min_heap.top();
 }
 
-void map_hcode(map<char,string> &hcode_table, min_heap_node* root, string str)
+void map_hcode(map<char,string>& hcode_table, min_heap_node* const& root, const string& str)
 {
   if (!root)
   {
@@ -144,7 +144,7 @@ void map_hcode(map<char,string> &hcode_table, min_heap_node* root, string str)
   map_hcode(hcode_table, root->right, str + "1");
 }
 
-void print_hcode(min_heap_node* root, string str)
+void print_hcode( min_heap_node* const& root, const string& str)
 {
   if (!root)
   {
@@ -160,7 +160,7 @@ void print_hcode(min_heap_node* root, string str)
   print_hcode(root->right, str + "1");
 }
 
-void compress(vector<char> char_vector, map<char, string> hcode_table)
+void compress(const vector<char>& char_vector, const map<char, string>& hcode_table)
 {
   ofstream output("compressed.bin", ios::binary);
   string buffer = "";
@@ -171,7 +171,7 @@ void compress(vector<char> char_vector, map<char, string> hcode_table)
   
   for (size_t i = 0; i < char_vector.size(); ++i)
   {
-    buffer += hcode_table[char_vector[i]];
+    buffer += hcode_table.at(char_vector[i]);
   }
   
   // just check if the vector length is < 8 and add to it instead
