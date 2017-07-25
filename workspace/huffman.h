@@ -15,7 +15,6 @@ class huffman {
     void print_char_frequency();
     void print_huffman_code();
   private:
-    std::string file_name;
     std::vector<char> char_vector;
     std::vector< std::pair<char, unsigned long long> > char_frequency;
     //min_heap_node* root;

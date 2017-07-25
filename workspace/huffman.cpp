@@ -3,7 +3,6 @@
 using namespace std;
 
 huffman::huffman(string file_name) {
-  this->file_name = file_name;
 }
 
 void huffman::compress() {
