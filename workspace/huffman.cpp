@@ -1,30 +1,51 @@
-#include "huffman.h"
+#include "Huffman.h"
+#include <cstdlib>
+#include <fstream>
+#include <cstring>
+#include <iostream>
 
 using namespace std;
 
-huffman::huffman(string file_name) {
+Huffman::Huffman(string file_name) {
+  ifstream file;
+  file.open(file_name.c_str(), ios::in);
+
+  if (file.fail()) {
+    cerr << "Error opening " << file_name << ": " << strerror(errno);
+    exit(EXIT_FAILURE);
+  }
+  else {
+    char current_char;
+
+    while (!file.eof()) {
+      file.get(current_char);
+      file_data.push_back(current_char);
+    }
+
+    file.close();
+  }
 }
 
-void huffman::compress() {
+void Huffman::compress() {
 
 }
 
-void huffman::decompress() {
+void Huffman::decompress() {
 
 }
 
-void huffman::output_file() {
+void Huffman::output_file() {
 
 }
 
-void huffman::print_file_contents() {
+void Huffman::print_file_data() {
 
 }
 
-void huffman::print_char_frequency() {
+void Huffman::print_char_frequency() {
 
 }
 
-void huffman::print_huffman_code() {
+void Huffman::print_huffman_code() {
 
 }
