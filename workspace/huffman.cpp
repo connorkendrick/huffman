@@ -11,7 +11,7 @@ Huffman::Huffman(const string& file_name) {
   file.open(file_name.c_str(), ios::in);
 
   if (file.fail()) {
-    cerr << "Error opening " << file_name << ": " << strerror(errno);
+    cerr << "Error opening " << file_name << ": " << strerror(errno) << endl;
     exit(EXIT_FAILURE);
   }
   else {
@@ -39,7 +39,10 @@ void Huffman::output_file() {
 }
 
 void Huffman::print_file_data() {
-
+  vector<char>::iterator it;
+  for (it = file_data.begin(); it < file_data.end(); ++it) {
+    cout << *it;
+  }
 }
 
 void Huffman::print_char_frequency() {
