@@ -7,7 +7,7 @@
 
 class Huffman {
   public:
-    Huffman(std::string file_name);
+    Huffman(const std::string& file_name);
     void compress();
     void decompress();
     void output_file();

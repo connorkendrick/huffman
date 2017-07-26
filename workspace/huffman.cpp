@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Huffman::Huffman(string file_name) {
+Huffman::Huffman(const string& file_name) {
   ifstream file;
   file.open(file_name.c_str(), ios::in);
 
