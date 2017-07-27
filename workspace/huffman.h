@@ -23,11 +23,16 @@ class Huffman {
     void print_huffman_code();
     // postcondition: a representation of the Huffman Code table has been printed to the console
   private:
-    // need to make a get char frequency function
-    // should i hold it in a map and just sort it for printing?
+    /* Functions */
+    void compute_char_frequency();
+    // postcondition: char_frequency has been filled with one of each char in file_data and their frequencies
 
+    /* Variables */
     std::vector<char> file_data;
+    // stores the data that is being worked with
     std::vector< std::pair<char, unsigned long long> > char_frequency;
+    // maps the frequencies of each char to respective char
+
     //min_heap_node* root;
 };
 
