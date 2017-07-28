@@ -1,6 +1,7 @@
 #ifndef HUFFMAN
 #define HUFFMAN
 
+#include "min_heap_node.h"
 #include <string>
 #include <vector>
 #include <map>
