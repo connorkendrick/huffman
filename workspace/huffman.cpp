@@ -23,12 +23,10 @@ Huffman::Huffman(const string& file_name) {
   }
   else {
     char current_char;
-
     while (!file.eof()) {
       file.get(current_char);
       file_data.push_back(current_char);
     }
-
     file.close();
   }
 
@@ -83,4 +81,8 @@ void Huffman::compute_char_frequency() {
 
   // sort char_frequency by frequency in ascending order
   sort(char_frequency.begin(), char_frequency.end(), sort_frequency);
+}
+
+void Huffman::generate_huffman_tree() {
+
 }

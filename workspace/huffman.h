@@ -26,6 +26,8 @@ class Huffman {
     /* Functions */
     void compute_char_frequency();
     // postcondition: char_frequency has been filled with one of each char in file_data and their frequencies
+    void generate_huffman_tree();
+    // postcondition: root is now the root node of the min heap (huffman tree)
 
     /* Variables */
     std::vector<char> file_data;
