@@ -22,6 +22,7 @@ class Huffman {
     void print_char_frequency();
     // postcondition: the frequency of each character in file_data has been printed to the console
     void print_huffman_code();
+    void print_huffman_code(min_heap_node *root, const std::string& str);
     // postcondition: a representation of the Huffman Code table has been printed to the console
   private:
     /* Functions */
@@ -35,8 +36,8 @@ class Huffman {
     // stores the data that is being worked with
     std::vector< std::pair<char, unsigned long long> > char_frequency;
     // maps the frequencies of each char to respective char
-
-    //min_heap_node* root;
+    min_heap_node root;
+    // points to the root of a min heap node (huffman tree)
 };
 
 #endif
