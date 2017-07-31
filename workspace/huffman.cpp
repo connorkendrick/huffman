@@ -127,3 +127,12 @@ void Huffman::generate_huffman_tree() {
   root = min_heap.top();
   // OBJECTS WONT WORK, NEED TO USE SHARED POINTER
 }
+
+// TODO
+// maybe i could store a huffman tree history so that compressed files can be decompressed
+// history: stores the frequency map of the file that can be converted into a tree
+// decompress method will take the file back to its original form
+// example: 5 compression method calls made, but decompress only called once to get original file
+// decompress without object history - freq history has to be stored with the file/passed in seperately
+// maybe make seperate decompression program?
+// make decompress a static method?
