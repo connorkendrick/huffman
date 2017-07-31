@@ -25,8 +25,9 @@ struct min_heap_node {
     is_internal = obj.is_internal;
     return *this;
   };
-  min_heap_node left;
-  min_heap_node right;
+  
+  min_heap_node *left;
+  min_heap_node *right;
   char data;
   unsigned long long frequency;
   bool is_internal;

@@ -20,7 +20,7 @@ struct priority_queue_compare {
 };
 
 /* Huffman member functions */
-Huffman::Huffman(const string& file_name) {
+explicit Huffman::Huffman(const string& file_name) {
   ifstream file;
   file.open(file_name.c_str(), ios::in);
 
